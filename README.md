@@ -1,0 +1,2 @@
+# MockingTextGenerator
+mOcKiNg TeXt GeNeRaToR
