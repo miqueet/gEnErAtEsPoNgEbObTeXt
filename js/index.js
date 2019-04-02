@@ -9,6 +9,8 @@
 */
 
 $( document ).ready(function(){
+	// Bing to input propertychange == text changes AS YOU TYPE
+	// Made cool. THX stackoverflow: https://stackoverflow.com/a/11338644
 	$("#notspongebob").bind('input propertychange', function() {
 		
 		// SpongeBob Text looks like this: "sPoNgEbOb TeXt LoOkS lIkE tHiS"
@@ -41,8 +43,6 @@ $( document ).ready(function(){
 		
 		// Apply the sPoNgEbOb text
 		$("#sPoNgEbObTeXt").val(totallySpongeBob);
-		console.log("Input: " + notSpongeBob);
-		console.log("Ouput: " + totallySpongeBob);
 	});
 });
 
@@ -60,4 +60,20 @@ function isCharacterMatch(input) {
 	}
 	
 	return false;				// NULL or empty arrays mean not character
+}
+
+function turnDownTheQuality() {
+	// Alternate the quality of the meme based on the checkbox
+	// https://api.jquery.com/prop/
+	// https://stackoverflow.com/a/12784242
+	if ( $("#bAdQuAlItYmEmEs").prop("checked") ) {
+		// "Bad" quality"
+		$("#spongebobmeme").attr("src", "img/mocking-spongebob_badquality.jpg");
+	}
+	else {
+		// "Good" quality
+		$("#spongebobmeme").attr("src", "img/mocking-spongebob_small.jpg");
+	}
+	
+	
 }
