@@ -1,5 +1,5 @@
 body {
-  padding-top: 5rem;
+  padding-top: 3.5rem;
 }
 .text-padding {
 	padding: 1rem;
@@ -17,38 +17,53 @@ body {
 /* Making the spongebob image only take up half the width of the screen */
 .spongebob-img {
 	position: relative;
-	width: 50%;
+	width: 30%;
 }
 
-/* Applying image macro text to the spongebob image (making some memes) */
+/* Applying image macro text to the spongebob image (making some memes)
+  This page was SUPER HELPFUL, didn't really like the border they did but it's working with img-fluid
+	so WOO HOO! Will need to find a good style for the text since it's hard to read if the font is just white.
+	https://stacktips.com/tutorials/bootstrap/how-to-display-text-overlay-on-a-responsive-image-in-bootstrap
+*/
 .top-caption {
-	height: 100%;
+	height: 100%;					/* Setting height: 100% makes this appear at the top of the image. */
 	width: 100%;
-	top: .3rem;
+	top: 0rem;						/* Need to set a top + bottom to get this to show up on the top */
 	bottom: .3rem;
 	position: absolute;
 	color: white;
 }
+/* Duh, apply style directly to the H4! that should make it easier to read. */
+#TopMeme {
+	background: linear-gradient(
+		rgba(0, 0, 0, 1.00),					/* 1.00 == pretty much completely dark back ground. */
+		rgba(0, 0, 0, 1.00)						/* Lower this number to make the background more transparent. */
+	);
+	padding-top: 0.5rem;						/* Can always tweak these values as needed */
+	padding-bottom: 0.5rem;
+}
 .bottom-caption {
+	/* Only set the width to make it appear at the bottom of the image. Also tweaked this so it's technically
+		showing up slightly below the image - this looks better, just because how how little room there is
+		on the bottom part. The image frame was just forced towards the bottom and there's no better memes
+		out there at the moment with this high quality of a screenshot. */
 	width:100%;
-	bottom: .3rem;
-	position: absolute;
+	/* Also need to set bottom 0 to make it appear right below the image and not on top of the bad quality check box. */
+	bottom: 0rem;					
+	position: relative;		/* Made thois relative so */
 	color: white;
-	/*background:#000;*/
-	/*
-	background: -webkit-linear-gradient(bottom, #000 40%, rgba(0, 0, 0, 0) 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
-	background: -moz-linear-gradient(bottom, #000 40%, rgba(0, 0, 0, 0) 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
-	background: -o-linear-gradient(bottom, #000 40%, rgba(0, 0, 0, 0) 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
-	background: linear-gradient(to top, #000 40%, rgba(0, 0, 0, 0) 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
-	*/
+}
+#BottomMeme {
+	background: linear-gradient(			/* Basically a copy of the top, but might tweak it over time. */
+		rgba(0, 0, 0, 1.00),
+		rgba(0, 0, 0, 1.00)
+	);
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
 }
 .thumbnail {
 	border: 0 none;
 	box-shadow: none;
 	margin:0;
 	padding:0;
-}
-.bottom-caption h4 {
-	color: #fff;
-	-webkit-font-smoothing: antialiased;
 }
