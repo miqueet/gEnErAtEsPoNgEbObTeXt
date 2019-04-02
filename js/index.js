@@ -42,6 +42,42 @@ $( document ).ready(function(){
 		
 		// Apply the sPoNgEbOb text
 		$("#sPoNgEbObTeXt").val(totallySpongeBob);
+		
+		/* 	Apply it to the IMAGE MACRO TOO!
+				Note: H4, so .text() not .val()
+				Also try to split on newlines. Using regex so this is platform
+				independent, since newlines vary from Windows to Linux/Mac
+				https://stackoverflow.com/a/45709854\
+		*/
+		var spongebobMemeBits = totallySpongeBob.split(/\r?\n/);
+		if (spongebobMemeBits.length > 1) {
+			/*	Apply first half of the bits to the top, second half to the bottom.
+					Ex: 2 bits, so 1 goes on top, the other below. If >2 bits, divide 
+					and round up (default behavior of round since .5 rounds UP), which is 
+					fine since there's more space above SpongeBob then below him.
+			*/
+			var textPart = "";
+			for (var i = 0; i < Math.round(spongebobMemeBits.length / 2); i++) {
+				textPart += spongebobMemeBits[i];
+			}
+			$("#TopMeme").text(textPart);
+			textPart = "";
+			for (var i = Math.round(spongebobMemeBits.length / 2); 
+						   i < spongebobMemeBits.length; i++) {
+				textPart += spongebobMemeBits[i];
+		  }
+			$("#BottomMeme").text(textPart);
+		}
+		else if (spongebobMemeBits.length == 0) {
+			// Edge case: we need to clear both the top and bottom text
+			$("#TopMeme").text("");
+			$("#BottomMeme").text("");
+		}
+		else {
+			// Otherwise, just the top text gets set.
+			$("#TopMeme").text(totallySpongeBob);
+			$("#BottomMeme").text("");	// Wipe out bottom meme if length equals 1
+		}
 	});
 	
 	// Copy sPoNgEbOb TeXt 2 the clipboard
