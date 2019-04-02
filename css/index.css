@@ -1,7 +1,15 @@
 body {
   padding-top: 5rem;
 }
-.starter-template {
-  padding: 3rem 1.5rem;
-  text-align: center;
+.text-padding {
+	padding: 1rem;
+}
+.instructions {
+	display: flex;
+	justify-content: flex-end;
+	font-weight: 600;
+}
+/* Overriding the default Bootstrap form-control */
+.spongebob-form {
+	width: 80%;
 }
