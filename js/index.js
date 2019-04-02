@@ -7,10 +7,9 @@
 	||	know ur meme: https://knowyourmeme.com/memes/mocking-spongebob ||
 	=====================================================================
 */
-
 $( document ).ready(function(){
-	// Bing to input propertychange == text changes AS YOU TYPE
-	// Made cool. THX stackoverflow: https://stackoverflow.com/a/11338644
+	// Bind to input propertychange == text changes AS YOU TYPE
+	// Mad cool. THX stackoverflow: https://stackoverflow.com/a/11338644
 	$("#notspongebob").bind('input propertychange', function() {
 		
 		// SpongeBob Text looks like this: "sPoNgEbOb TeXt LoOkS lIkE tHiS"
@@ -44,6 +43,54 @@ $( document ).ready(function(){
 		// Apply the sPoNgEbOb text
 		$("#sPoNgEbObTeXt").val(totallySpongeBob);
 	});
+	
+	// Copy sPoNgEbOb TeXt 2 the clipboard
+	$("#sPoNgEbObTeXt").click(function () {
+		copy2clipboard("#sPoNgEbObTeXt");
+	});
+	
+	// Hover text to let the user know we auto copy to the clipboard for them
+	$('[data-toggle="tooltip"]').tooltip();
+	
+	// Enable Tool tips when hovering & Disable tool tips after hovering
+	// This stops the tool tip from being there when you're typing
+	// awesome sPonGe BoB tExT
+	// https://api.jquery.com/hover/
+	$("#notspongebob").hover(
+	// Hover In
+	function() {
+		// https://stackoverflow.com/a/9875490
+		$("#notspongebob").tooltip('hide')
+					.attr('data-original-title', "<em>iNpUt YoUr TeXt</em> <u>HeRe</u>")
+          .tooltip('show');
+	}, 
+	// Hover out
+	function() {
+		$("#notspongebob").tooltip('show')
+					.attr('data-original-title', "")
+          .tooltip('hide');
+	});
+	
+	// If the user copies sPonGe BoB tExT, I change the tool tip to say that
+	// text has been copied to the clipboard. The text never changes back to
+	// to the original "cLiCk HeRe 2 AuTo CoPy 2 YoUr ClIpBoArD", 
+	// so reset it on hover.
+	$("#sPoNgEbObTeXt").hover(
+	// Hover In
+	function() {
+		// https://stackoverflow.com/a/9875490
+		$("#sPoNgEbObTeXt").tooltip('hide')
+					.attr('data-original-title', 
+							  "<em>cLiCk</em> <u>HeRe</u> <em>2 AuTo CoPy 2 YoUr ClIpBoArD</em>")
+          .tooltip('show');
+	}, 
+	// Hover out
+	function() {
+		$("#sPoNgEbObTeXt").tooltip('show')
+					.attr('data-original-title', "")
+          .tooltip('hide');
+	});
+	
 });
 
 // Returns true if lowercase character, false otherwise
@@ -62,10 +109,10 @@ function isCharacterMatch(input) {
 	return false;				// NULL or empty arrays mean not character
 }
 
+// Alternate the quality of the meme based on the checkbox
+// https://api.jquery.com/prop/
+// https://stackoverflow.com/a/12784242
 function turnDownTheQuality() {
-	// Alternate the quality of the meme based on the checkbox
-	// https://api.jquery.com/prop/
-	// https://stackoverflow.com/a/12784242
 	if ( $("#bAdQuAlItYmEmEs").prop("checked") ) {
 		// "Bad" quality"
 		$("#spongebobmeme").attr("src", "img/mocking-spongebob_badquality.jpg");
@@ -74,6 +121,18 @@ function turnDownTheQuality() {
 		// "Good" quality
 		$("#spongebobmeme").attr("src", "img/mocking-spongebob_small.jpg");
 	}
+}
+
+// Auto copy sPonGe BoB tExT to clipboard on output box click
+function copy2clipboard(element) {
+	$(element).select();
+	document.execCommand("copy");
 	
-	
+	// HIDE THE TOOL TIP!
+	// Note: super annoying to do this, future reference see SO post below:
+	// https://stackoverflow.com/a/9875490
+	$("#sPoNgEbObTeXt").tooltip('hide')
+					.attr('data-original-title', 
+					"cOpIeD 2 tHe ClIpBoArD - uR wElCoMe SiR/mAdAmE!")
+          .tooltip('show');
 }
